@@ -1,15 +1,10 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../redux/store";
+import { useDispatch } from "react-redux";
 import { fetchPosts } from "../redux/features/postSlice";
-import PostForm from "../components/PostForm";
-import PostList from "../components/PostList";
-import { Button } from "@mui/material";
-import { logoutUser } from "../redux/features/authSlice";
-import toast from "react-hot-toast";
+import { AppDispatch } from "../redux/store";
 
 const Dashboard = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(fetchPosts());

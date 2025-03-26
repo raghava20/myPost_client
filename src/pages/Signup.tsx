@@ -6,6 +6,7 @@ import { Button, TextField } from "@mui/material";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../redux/features/authSlice";
+import { AppDispatch } from "../redux/store";
 
 // Zod Schema for Signup Validation
 const signupSchema = z.object({
@@ -17,7 +18,7 @@ const signupSchema = z.object({
 type SignupFormInputs = z.infer<typeof signupSchema>;
 
 const Signup = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const {
     register,

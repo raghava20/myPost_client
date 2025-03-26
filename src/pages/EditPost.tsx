@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { fetchPostById } from "../redux/features/postSlice";
 import PostForm from "../components/PostForm";
-import { RootState } from "../redux/store";
+import { AppDispatch, RootState } from "../redux/store";
 
 export default function EditPost() {
   const { id } = useParams<{ id: string }>();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   const { post, loading } = useSelector((state: RootState) => state.post);
@@ -61,7 +61,7 @@ export default function EditPost() {
         </div>
 
         <div className="bg-card shadow-sm p-6 border rounded-lg">
-          <PostForm initialData={post} id={id} />
+          <PostForm initialData={post} id={id || ""} />
         </div>
       </main>
     </div>

@@ -34,6 +34,7 @@ export const registerUser = createAsyncThunk(
         name,
       });
     } catch (error) {
+      console.error(error);
       return thunkAPI.rejectWithValue("Signup failed");
     }
   }
@@ -51,6 +52,7 @@ export const loginUser = createAsyncThunk(
       localStorage.setItem("user", JSON.stringify(response.data.user));
       return { user: response.data.user, token };
     } catch (error) {
+      console.error(error);
       return thunkAPI.rejectWithValue("Login failed");
     }
   }

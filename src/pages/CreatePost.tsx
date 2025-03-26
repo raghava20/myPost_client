@@ -12,8 +12,8 @@ export default function CreatePost() {
             Share your thoughts with a beautifully designed post.
           </p>
         </div>
-
         <div className="bg-card shadow-sm p-6 border rounded-lg">
+          {/* @ts-ignore */}
           <PostForm />
         </div>
       </main>

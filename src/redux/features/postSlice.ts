@@ -7,6 +7,7 @@ export interface Post {
   text: string;
   image: string;
   user: string;
+  createAt?: Date;
 }
 
 interface PostState {
@@ -45,7 +46,7 @@ export const updatePost = createAsyncThunk(
   async (post: {
     title: string;
     text: string;
-    image: File | null;
+    image: File | null | string;
     id: string;
   }) => {
     const formData = new FormData();

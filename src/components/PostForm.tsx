@@ -12,6 +12,7 @@ import { Button, TextField, IconButton, Typography } from "@mui/material";
 import { Close } from "@mui/icons-material";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { AppDispatch } from "../redux/store";
 
 // Zod Schema for Post Validation
 const postSchema = z.object({
@@ -22,8 +23,14 @@ const postSchema = z.object({
 
 type PostFormInputs = z.infer<typeof postSchema>;
 
-const PostForm = ({ initialData, id }) => {
-  const dispatch = useDispatch();
+const PostForm = ({
+  initialData,
+  id,
+}: {
+  initialData?: PostFormInputs;
+  id: string;
+}) => {
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   const {
@@ -64,7 +71,7 @@ const PostForm = ({ initialData, id }) => {
 
   // Remove Image
   const removeImage = () => {
-    setValue("image", null);
+    setValue("image", "");
     setImagePreview(null);
     trigger("image"); // Re-validate the image field after removal
   };
@@ -78,11 +85,17 @@ const PostForm = ({ initialData, id }) => {
           id: id,
         };
         navigate("/posts");
-        await dispatch(updatePost(result)).unwrap();
+        // @ts-ignore
+        await dispatch(updatePost({ ...result, id })).unwrap();
         toast.success("Post updated successfully");
         dispatch(fetchPosts());
       } else {
-        await dispatch(createPost(data)).unwrap();
+        await dispatch(
+          createPost({
+            ...data,
+            image: data.image instanceof File ? data.image : null,
+          })
+        ).unwrap();
         toast.success("Post created successfully");
       }
       setImagePreview(null);

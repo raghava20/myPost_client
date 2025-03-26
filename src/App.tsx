@@ -10,13 +10,12 @@ import { Toaster } from "react-hot-toast";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 // import Home from "./pages/Home";
-import Dashboard from "./pages/Dashboard";
+// import Dashboard from "./pages/Dashboard";
 import Navbar from "./common/Navbar";
 import NotFound from "./pages/NotFound";
 import CreatePost from "./pages/CreatePost";
 import EditPost from "./pages/EditPost";
 import Posts from "./pages/MyPosts";
-import Cookies from "js-cookie";
 
 const App = () => {
   const user = useSelector(

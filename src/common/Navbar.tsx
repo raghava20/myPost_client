@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../redux/store";
+import { AppDispatch, RootState } from "../redux/store";
 import { logoutUser } from "../redux/features/authSlice";
 import { Button } from "@mui/material";
 import toast from "react-hot-toast";
@@ -10,7 +10,7 @@ const Navbar = () => {
     (state: RootState) => state.auth.user || localStorage.getItem("user")
   );
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   const handleLogout = () => {
